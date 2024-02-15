@@ -1,0 +1,42 @@
+﻿@model EcommerceLaptopMVC.Models.Supplier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Supplier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupAdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupAdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupPhone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SupId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

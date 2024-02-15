@@ -1,0 +1,75 @@
+﻿@model IEnumerable<EcommerceLaptopMVC.Models.Laptop>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LCore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LSpace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MsOffce)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelType.TypeNAme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier.SupName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LCore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LSpace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MsOffce)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelType.TypeNAme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.SupName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Lid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Lid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Lid })
+        </td>
+    </tr>
+}
+
+</table>

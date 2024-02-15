@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProductsDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Laptop">
+          <Key>
+            <PropertyRef Name="Lid" />
+          </Key>
+          <Property Name="Lid" Type="int" Nullable="false" />
+          <Property Name="LName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LCore" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LSpace" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LPrice" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MsOffce" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Model_Id" Type="int" />
+          <Property Name="Supplier_Id" Type="int" />
+          <Property Name="Price" Type="float" />
+        </EntityType>
+        <EntityType Name="ModelType">
+          <Key>
+            <PropertyRef Name="Mid" />
+          </Key>
+          <Property Name="Mid" Type="int" Nullable="false" />
+          <Property Name="TypeNAme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOLap" Type="int" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupId" />
+          </Key>
+          <Property Name="SupId" Type="int" Nullable="false" />
+          <Property Name="SupName" Type="varchar" MaxLength="50" />
+          <Property Name="SupAdd" Type="varchar" MaxLength="50" />
+          <Property Name="SupPhone" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__Laptop__Model_Id__73BA3083">
+          <End Role="ModelType" Type="Self.ModelType" Multiplicity="0..1" />
+          <End Role="Laptop" Type="Self.Laptop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelType">
+              <PropertyRef Name="Mid" />
+            </Principal>
+            <Dependent Role="Laptop">
+              <PropertyRef Name="Model_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Laptop__Supplier__74AE54BC">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="Laptop" Type="Self.Laptop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupId" />
+            </Principal>
+            <Dependent Role="Laptop">
+              <PropertyRef Name="Supplier_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProductsDbModelStoreContainer">
+          <EntitySet Name="Laptop" EntityType="Self.Laptop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModelType" EntityType="Self.ModelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Laptop__Model_Id__73BA3083" Association="Self.FK__Laptop__Model_Id__73BA3083">
+            <End Role="ModelType" EntitySet="ModelType" />
+            <End Role="Laptop" EntitySet="Laptop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Laptop__Supplier__74AE54BC" Association="Self.FK__Laptop__Supplier__74AE54BC">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Laptop" EntitySet="Laptop" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProductsDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Laptop">
+          <Key>
+            <PropertyRef Name="Lid" />
+          </Key>
+          <Property Name="Lid" Type="Int32" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LCore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LSpace" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LPrice" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MsOffce" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Model_Id" Type="Int32" />
+          <Property Name="Supplier_Id" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <NavigationProperty Name="ModelType" Relationship="Self.FK__Laptop__Model_Id__73BA3083" FromRole="Laptop" ToRole="ModelType" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__Laptop__Supplier__74AE54BC" FromRole="Laptop" ToRole="Suppliers" />
+        </EntityType>
+        <EntityType Name="ModelType">
+          <Key>
+            <PropertyRef Name="Mid" />
+          </Key>
+          <Property Name="Mid" Type="Int32" Nullable="false" />
+          <Property Name="TypeNAme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOLap" Type="Int32" />
+          <NavigationProperty Name="Laptops" Relationship="Self.FK__Laptop__Model_Id__73BA3083" FromRole="ModelType" ToRole="Laptop" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupId" />
+          </Key>
+          <Property Name="SupId" Type="Int32" Nullable="false" />
+          <Property Name="SupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SupAdd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SupPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Laptops" Relationship="Self.FK__Laptop__Supplier__74AE54BC" FromRole="Suppliers" ToRole="Laptop" />
+        </EntityType>
+        <Association Name="FK__Laptop__Model_Id__73BA3083">
+          <End Role="ModelType" Type="Self.ModelType" Multiplicity="0..1" />
+          <End Role="Laptop" Type="Self.Laptop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelType">
+              <PropertyRef Name="Mid" />
+            </Principal>
+            <Dependent Role="Laptop">
+              <PropertyRef Name="Model_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Laptop__Supplier__74AE54BC">
+          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Laptop" Type="Self.Laptop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupId" />
+            </Principal>
+            <Dependent Role="Laptop">
+              <PropertyRef Name="Supplier_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProductsDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Laptops" EntityType="Self.Laptop" />
+          <EntitySet Name="ModelTypes" EntityType="Self.ModelType" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <AssociationSet Name="FK__Laptop__Model_Id__73BA3083" Association="Self.FK__Laptop__Model_Id__73BA3083">
+            <End Role="ModelType" EntitySet="ModelTypes" />
+            <End Role="Laptop" EntitySet="Laptops" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Laptop__Supplier__74AE54BC" Association="Self.FK__Laptop__Supplier__74AE54BC">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Laptop" EntitySet="Laptops" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProductsDbModelStoreContainer" CdmEntityContainer="ProductsDbEntities">
+          <EntitySetMapping Name="Laptops">
+            <EntityTypeMapping TypeName="ProductsDbModel.Laptop">
+              <MappingFragment StoreEntitySet="Laptop">
+                <ScalarProperty Name="Lid" ColumnName="Lid" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="LCore" ColumnName="LCore" />
+                <ScalarProperty Name="LSpace" ColumnName="LSpace" />
+                <ScalarProperty Name="LPrice" ColumnName="LPrice" />
+                <ScalarProperty Name="MsOffce" ColumnName="MsOffce" />
+                <ScalarProperty Name="Model_Id" ColumnName="Model_Id" />
+                <ScalarProperty Name="Supplier_Id" ColumnName="Supplier_Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModelTypes">
+            <EntityTypeMapping TypeName="ProductsDbModel.ModelType">
+              <MappingFragment StoreEntitySet="ModelType">
+                <ScalarProperty Name="Mid" ColumnName="Mid" />
+                <ScalarProperty Name="TypeNAme" ColumnName="TypeNAme" />
+                <ScalarProperty Name="NOLap" ColumnName="NOLap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="ProductsDbModel.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="SupId" ColumnName="SupId" />
+                <ScalarProperty Name="SupName" ColumnName="SupName" />
+                <ScalarProperty Name="SupAdd" ColumnName="SupAdd" />
+                <ScalarProperty Name="SupPhone" ColumnName="SupPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

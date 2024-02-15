@@ -1,0 +1,82 @@
+﻿@model EcommerceLaptopMVC.Models.Laptop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Laptop</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LSpace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LSpace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MsOffce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MsOffce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelType.TypeNAme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModelType.TypeNAme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier.SupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.SupName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Lid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
